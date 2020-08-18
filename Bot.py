@@ -74,6 +74,9 @@ async def on_message(message):
         embed = embedImage("https://cdn.pixabay.com/photo/2016/10/04/16/33/heart-shape-1714807_960_720.jpg", "Why Thank You")
         await message.channel.send(embed=embed)
 
+    elif compare("dylan is plane"):
+        await message.channel.send("plane sex")
+
     if checkCommand("-n"):
         if message.mentions != []:
             words = getCommand(True)
