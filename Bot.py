@@ -1,8 +1,13 @@
 import discord
 import aiohttp
 
-#tokenFile = open("token.txt", "r")
-token = TOKEN
+tokenFile = open("token.txt", "r")
+tokenList = tokenFile.readlines()
+print(tokenList)
+token = "";
+for x in tokenList:
+    token += x[0]
+print(token)
 id = 703700230251610172
 client = discord.Client()
 
