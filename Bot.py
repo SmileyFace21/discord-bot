@@ -1,7 +1,8 @@
 import discord
 import aiohttp
 
-token = "NzQzNjI5MTk0MTgwOTUyMDc0.XzXcpw.XiNCnkdGS5NdjhnrtbmBHxL4jaY"
+tokenFile = open("token.txt", "r")
+token = tokenFile.read()
 id = 703700230251610172
 client = discord.Client()
 
