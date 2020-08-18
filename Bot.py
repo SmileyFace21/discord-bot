@@ -1,10 +1,10 @@
 import discord
 import aiohttp
 
-token = "NzQzNjI5MTk0MTgwOTUyMDc0.XzXcpw.kfr5zaJfTnDQP5QpAUzWpClNKWc"
+token = "NzQzNjI5MTk0MTgwOTUyMDc0.XzXcpw.XiNCnkdGS5NdjhnrtbmBHxL4jaY"
 id = 703700230251610172
 client = discord.Client()
-insultWord = "dumb"
+
 
 
 

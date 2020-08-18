@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="448d9164-da64-4487-be67-aa8a7f63a8b4" name="Default Changelist" comment="" />
+    <list default="true" id="448d9164-da64-4487-be67-aa8a7f63a8b4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +16,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1g4Gqo8wP9tcYKbcsXFK7zztwYc" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -21,7 +26,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Bot.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunManager">
@@ -63,10 +68,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="201" y="63" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597366721085" />
-    <state x="526" y="175" key="FileChooserDialogImpl" timestamp="1597366692104">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2578" y="221" key="FileChooserDialogImpl" timestamp="1597672976371">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="526" y="175" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1597366692104" />
+    <state x="2578" y="221" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597672976371" />
     <state width="1416" height="81" key="GridCell.Tab.0.bottom" timestamp="1597622475430">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
