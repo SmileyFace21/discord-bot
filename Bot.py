@@ -3,11 +3,9 @@ import aiohttp
 
 tokenFile = open("token.txt", "r")
 tokenList = tokenFile.readlines()
-print(tokenList)
 token = "";
 for x in tokenList:
     token += x[0]
-print(token)
 id = 703700230251610172
 client = discord.Client()
 
@@ -93,7 +91,7 @@ async def on_message(message):
 
     if checkCommand("clear"):
         num = int(getCommand(False))
-        deleted = await message.channel.purge(limit=num)
+        deleted = await message.channel.purge(limit=num + 1)
         await message.channel.send('Deleted {} message(s)'.format(len(deleted)))
 
     if compare("cutest white boy") or compare("caden"):
@@ -128,6 +126,10 @@ async def on_message(message):
         embed = embedImage("https://i.imgur.com/tmrfmuC.jpg", "giraffe")
         await message.channel.send(embed=embed)
 
+    if compare("adam"):
+        embed = embedImage("https://i.imgur.com/C2PDNDO.png", "FZ")
+        await message.channel.send(embed=embed)
+
     elif compare("mihir"):
         embed = embedImage("https://i.imgur.com/WmykdDd.jpg", "intelligent man")
         await message.channel.send(embed=embed)
@@ -135,6 +137,14 @@ async def on_message(message):
     elif compare("dj") or compare("dong jong"):
         embed = embedImage("https://i.imgur.com/L3uXwVI.jpg", "tall man")
         await message.channel.send(embed=embed)
+
+    elif checkCommand("-gay"):
+        member = message.mentions[0]
+        await member.edit(roles=["gay"])
+
+
+
+
 
 
 
