@@ -1,5 +1,6 @@
 import discord
 import aiohttp
+import random
 
 tokenFile = open("token.txt", "r")
 tokenList = tokenFile.readlines()
@@ -9,6 +10,28 @@ for x in tokenList:
 id = 703700230251610172
 client = discord.Client()
 
+
+planeGifUrls = ["https://media1.tenor.com/images/aca8586d66dea2e08350081215a500dd/tenor.gif?itemid=8158374",
+                "https://media1.tenor.com/images/83715a6e56f08f82199fd039f7084131/tenor.gif?itemid=14560718",
+                "https://media1.tenor.com/images/e3337367c758871c4efb3159baff2c0d/tenor.gif?itemid=8158394",
+                "https://media1.tenor.com/images/87583d54ffbdb1b05d3e05fdc1e004b1/tenor.gif?itemid=10577397",
+                "https://media1.tenor.com/images/0cbcf3e5ff1086618ff3dceba85f3bce/tenor.gif?itemid=5499077",
+                "https://media1.tenor.com/images/d054bce45f7db912cbd7d6eddb84ee5b/tenor.gif?itemid=4951023",
+                "https://media1.tenor.com/images/dc15a5beabdbaed14f113c73a51cab2f/tenor.gif?itemid=12120353",
+                "https://media1.tenor.com/images/3d6e0950a24bab637d783f217b7074c5/tenor.gif?itemid=17480645",
+                "https://media1.tenor.com/images/206e054ea209983d4dbe72a29ac1b26d/tenor.gif?itemid=4891581",
+                "https://media1.tenor.com/images/9b0a2828823f4855d52ffd1c634d4c41/tenor.gif?itemid=10498356",
+                "https://media1.tenor.com/images/b8a228590919712792210e2bf15fe7f9/tenor.gif?itemid=8806598",
+                "https://media1.tenor.com/images/bbcc43c18ca31bbdf266a2d37f535423/tenor.gif?itemid=8825513",
+                "https://media1.tenor.com/images/aa3876e89cb39b63a5e948731c5ee3b6/tenor.gif?itemid=12221543",
+                "https://media1.tenor.com/images/ed47722a2ba9ce66eaf92a067535d4cf/tenor.gif?itemid=16898320"
+
+
+
+
+,
+
+        ]
 
 
 
@@ -142,6 +165,9 @@ async def on_message(message):
         member = message.mentions[0]
         await member.edit(roles=["gay"])
 
+    if compare("plane gif"):
+        embed = embedImage(planeGifUrls[int(random.random() * len(planeGifUrls))], "plane gif")
+        await message.channel.send(embed=embed)
 
 
 
