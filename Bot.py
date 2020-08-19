@@ -9,6 +9,7 @@ for x in tokenList:
     token += x[0]
 id = 703700230251610172
 client = discord.Client()
+lastNum = 0
 
 
 planeGifUrls = ["https://media1.tenor.com/images/aca8586d66dea2e08350081215a500dd/tenor.gif?itemid=8158374",
@@ -37,6 +38,7 @@ planeGifUrls = ["https://media1.tenor.com/images/aca8586d66dea2e08350081215a500d
 
 @client.event
 async def on_message(message):
+    global lastNum
     id = client.get_guild(703700230251610172)
 
     def compare(word):
@@ -166,7 +168,11 @@ async def on_message(message):
         await member.edit(roles=["gay"])
 
     if compare("plane gif"):
-        embed = embedImage(planeGifUrls[int(random.random() * len(planeGifUrls))], "plane gif")
+        nextNum = int(random.random() * len(planeGifUrls))
+        while nextNum == lastNum:
+            nextNum = int(random.random() * len(planeGifUrls))
+        lastNum = nextNum
+        embed = embedImage(planeGifUrls[nextNum], "plane gif")
         await message.channel.send(embed=embed)
 
 
