@@ -129,7 +129,7 @@ async def on_message(message):
         embed = embedImage("https://i.imgur.com/hkseTHR.png", "ew")
         await message.channel.send(embed=embed)
 
-    if compare("kahil"):
+    if compare("kahil") or compare("lil poop"):
         embed = embedImage("https://i.imgur.com/E3W8sLK.jpg", "oh yes")
         await message.channel.send(embed=embed)
 
