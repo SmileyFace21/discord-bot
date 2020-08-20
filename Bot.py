@@ -26,13 +26,11 @@ planeGifUrls = ["https://media1.tenor.com/images/aca8586d66dea2e08350081215a500d
                 "https://media1.tenor.com/images/bbcc43c18ca31bbdf266a2d37f535423/tenor.gif?itemid=8825513",
                 "https://media1.tenor.com/images/aa3876e89cb39b63a5e948731c5ee3b6/tenor.gif?itemid=12221543",
                 "https://media1.tenor.com/images/ed47722a2ba9ce66eaf92a067535d4cf/tenor.gif?itemid=16898320"
-
-
-
-
-,
-
         ]
+
+jaishilPics = ["https://i.imgur.com/hkseTHR.png"
+
+]
 
 
 
@@ -139,7 +137,7 @@ async def on_message(message):
         embed = embedImage("https://i.imgur.com/jiTkP0x.jpg", "plane man")
         await message.channel.send(embed=embed)
 
-    if compare("lizzo") or compare("cardi b"):
+    if compare("lizzo") or compare("cardi b") or compare("nicki minaj") or compare("megan thee stallion") or compare("travis scott"):
         embed = embedImage("https://images-na.ssl-images-amazon.com/images/I/417CVAiSffL._AC_SY355_.jpg", "i only speak the truth")
         await message.channel.send(embed=embed)
 
