@@ -137,7 +137,7 @@ async def on_message(message):
         embed = embedImage("https://i.imgur.com/jiTkP0x.jpg", "plane man")
         await message.channel.send(embed=embed)
 
-    if compare("lizzo") or compare("cardi b") or compare("nicki minaj") or compare("megan thee stallion") or compare("travis scott"):
+    if compare("lizzo") or compare("cardi b") or compare("nicki minaj") or compare("megan thee stallion") or compare("travis scott") or compare("lil pump") or compare("lil uzi") or compare("lil xan") or compare("don toliver"):
         embed = embedImage("https://images-na.ssl-images-amazon.com/images/I/417CVAiSffL._AC_SY355_.jpg", "i only speak the truth")
         await message.channel.send(embed=embed)
 
