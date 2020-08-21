@@ -36,7 +36,7 @@ jaishilPics = ["https://i.imgur.com/hkseTHR.png"
 
 @client.event
 async def on_message(message):
-    global lastNum
+    global lastNum, id
     id = client.get_guild(703700230251610172)
 
     def compare(word):
@@ -90,6 +90,7 @@ async def on_message(message):
 
     elif compare("mihir is gay"):
         await message.author.edit(nick="i am big gay")
+        await message.author.edit(voice_channel=None)
 
     elif compare("i love mihir"):
         embed = embedImage("https://cdn.pixabay.com/photo/2016/10/04/16/33/heart-shape-1714807_960_720.jpg", "Why Thank You")
@@ -161,10 +162,6 @@ async def on_message(message):
         embed = embedImage("https://i.imgur.com/L3uXwVI.jpg", "tall man")
         await message.channel.send(embed=embed)
 
-    elif checkCommand("-gay"):
-        member = message.mentions[0]
-        await member.edit(roles=["gay"])
-
     if compare("plane gif"):
         nextNum = int(random.random() * len(planeGifUrls))
         while nextNum == lastNum:
@@ -172,6 +169,19 @@ async def on_message(message):
         lastNum = nextNum
         embed = embedImage(planeGifUrls[nextNum], "plane gif")
         await message.channel.send(embed=embed)
+
+
+    if checkCommand("-gay"):
+        if message.mentions != []:
+            user = message.mentions[0]
+
+#@client.event
+#async def on_voice_state_update(member, before, after):
+ #   if before.channel != after.channel:
+  #      vcList = Guild.voice_channels
+
+
+
 
 
 
