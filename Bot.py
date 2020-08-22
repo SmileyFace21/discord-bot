@@ -172,6 +172,10 @@ async def on_message(message):
         await message.channel.send(embed=embed)
         await message.channel.send("jisl is a weenie", tts=True)
 
+    if compare("among us"):
+        embed = embedImage("https://i.imgur.com/dFz2mbY.png", "inside us hehe")
+        await message.channel.send(embed=embed)
+
 
     if compare("plane gif"):
         nextNum = int(random.random() * len(planeGifUrls))
