@@ -154,13 +154,22 @@ async def on_message(message):
         embed = embedImage("https://i.imgur.com/C2PDNDO.png", "FZ")
         await message.channel.send(embed=embed)
 
-    elif compare("mihir"):
+    if compare("mihir"):
         embed = embedImage("https://i.imgur.com/WmykdDd.jpg", "intelligent man")
         await message.channel.send(embed=embed)
 
-    elif compare("dj") or compare("dong jong"):
+    if compare("dj") or compare("dong jong"):
         embed = embedImage("https://i.imgur.com/L3uXwVI.jpg", "tall man")
         await message.channel.send(embed=embed)
+
+    if compare("yeah yeah"):
+        embed = embedImage("https://imgur.com/a/gld0zsn", "yeah yeah")
+        await message.channel.send(embed=embed)
+
+    if compare("no no"):
+        embed = embedImage("https://imgur.com/a/MzOGBrA", "no no")
+        await message.channel.send(embed=embed)
+
 
     if compare("plane gif"):
         nextNum = int(random.random() * len(planeGifUrls))
