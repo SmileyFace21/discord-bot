@@ -163,12 +163,14 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
     if compare("yeah yeah"):
-        embed = embedImage("https://imgur.com/a/gld0zsn", "yeah yeah")
+        embed = embedImage("https://i.imgur.com/Uovs7CM.png", "yeah yeah")
         await message.channel.send(embed=embed)
+        await message.channel.send("singing challenge", tts=True)
 
     if compare("no no"):
-        embed = embedImage("https://imgur.com/a/MzOGBrA", "no no")
+        embed = embedImage("https://i.imgur.com/J1mdv2G.png", "no no")
         await message.channel.send(embed=embed)
+        await message.channel.send("jisl is a weenie", tts=True)
 
 
     if compare("plane gif"):
