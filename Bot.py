@@ -116,7 +116,6 @@ async def on_message(message):
     if checkCommand("clear"):
         num = int(getCommand(False))
         deleted = await message.channel.purge(limit=num + 1)
-        await message.channel.send('Deleted {} message(s)'.format(len(deleted)))
 
     if compare("cutest white boy") or compare("caden"):
         embed = embedImage("https://i.imgur.com/6weiAAu.jpg", "the one and only")
