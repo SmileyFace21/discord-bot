@@ -118,7 +118,7 @@ async def on_message(message):
         num = int(getCommand(False))
         deleted = await message.channel.purge(limit=num + 1)
 
-    if checkCommand("-o"):
+    if checkCommand("-o") and getCommand(False) == "":
         if wantPics:
             wantPics = False
         else:
