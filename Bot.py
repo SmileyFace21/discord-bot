@@ -189,6 +189,10 @@ async def on_message(message):
             embed = embedImage("https://i.imgur.com/dFz2mbY.png", "inside us hehe")
             await message.channel.send(embed=embed)
 
+        if compare ("kanye") or compare("kanye west"):
+            embed = embedImage("https://i.imgur.com/Qpgsg5G.png", "jesus or kanye????")
+            await message.channel.send(embed=embed)
+
 
     if compare("plane gif"):
         nextNum = int(random.random() * len(planeGifUrls))
