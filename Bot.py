@@ -10,6 +10,7 @@ for x in tokenList:
 id = 703700230251610172
 client = discord.Client()
 lastNum = 0
+wantPics = True
 
 
 planeGifUrls = ["https://media1.tenor.com/images/aca8586d66dea2e08350081215a500dd/tenor.gif?itemid=8158374",
@@ -36,7 +37,7 @@ jaishilPics = ["https://i.imgur.com/hkseTHR.png"
 
 @client.event
 async def on_message(message):
-    global lastNum, id
+    global lastNum, id, wantPics
     id = client.get_guild(703700230251610172)
 
     def compare(word):
@@ -117,63 +118,71 @@ async def on_message(message):
         num = int(getCommand(False))
         deleted = await message.channel.purge(limit=num + 1)
 
-    if compare("cutest white boy") or compare("caden"):
-        embed = embedImage("https://i.imgur.com/6weiAAu.jpg", "the one and only")
-        await message.channel.send(embed=embed)
+    if checkCommand("-o"):
+        if wantPics:
+            wantPics = False
+        else:
+            wantPics = True
 
-    if compare("alex"):
-        embed = embedImage("https://i.imgur.com/JDzXuSa.jpg", "alex man")
-        await message.channel.send(embed=embed)
+    if wantPics:
 
-    if compare("jaishil"):
-        embed = embedImage("https://i.imgur.com/hkseTHR.png", "ew")
-        await message.channel.send(embed=embed)
+        if compare("cutest white boy") or compare("caden"):
+            embed = embedImage("https://i.imgur.com/6weiAAu.jpg", "the one and only")
+            await message.channel.send(embed=embed)
 
-    if compare("kahil") or compare("lil poop"):
-        embed = embedImage("https://i.imgur.com/E3W8sLK.jpg", "oh yes")
-        await message.channel.send(embed=embed)
+        if compare("alex"):
+            embed = embedImage("https://i.imgur.com/JDzXuSa.jpg", "alex man")
+            await message.channel.send(embed=embed)
 
-    if compare("dylan"):
-        embed = embedImage("https://i.imgur.com/jiTkP0x.jpg", "plane man")
-        await message.channel.send(embed=embed)
+        if compare("jaishil"):
+            embed = embedImage("https://i.imgur.com/hkseTHR.png", "ew")
+            await message.channel.send(embed=embed)
 
-    if compare("lizzo") or compare("cardi b") or compare("nicki minaj") or compare("megan thee stallion") or compare("travis scott") or compare("lil pump") or compare("lil uzi") or compare("lil xan") or compare("don toliver"):
-        embed = embedImage("https://images-na.ssl-images-amazon.com/images/I/417CVAiSffL._AC_SY355_.jpg", "i only speak the truth")
-        await message.channel.send(embed=embed)
+        if compare("kahil") or compare("lil poop"):
+            embed = embedImage("https://i.imgur.com/E3W8sLK.jpg", "oh yes")
+            await message.channel.send(embed=embed)
 
-    if compare("parth"):
-        embed = embedImage("https://i.imgur.com/3KoUMsf.png", "very nice")
-        await message.channel.send(embed=embed)
+        if compare("dylan"):
+            embed = embedImage("https://i.imgur.com/jiTkP0x.jpg", "plane man")
+            await message.channel.send(embed=embed)
 
-    if compare("abhi") or compare("abhinav"):
-        embed = embedImage("https://i.imgur.com/tmrfmuC.jpg", "giraffe")
-        await message.channel.send(embed=embed)
+        if compare("lizzo") or compare("cardi b") or compare("nicki minaj") or compare("megan thee stallion") or compare("travis scott") or compare("lil pump") or compare("lil uzi") or compare("lil xan") or compare("don toliver"):
+            embed = embedImage("https://images-na.ssl-images-amazon.com/images/I/417CVAiSffL._AC_SY355_.jpg", "i only speak the truth")
+            await message.channel.send(embed=embed)
 
-    if compare("adam"):
-        embed = embedImage("https://i.imgur.com/C2PDNDO.png", "FZ")
-        await message.channel.send(embed=embed)
+        if compare("parth"):
+            embed = embedImage("https://i.imgur.com/3KoUMsf.png", "very nice")
+            await message.channel.send(embed=embed)
 
-    if compare("mihir"):
-        embed = embedImage("https://i.imgur.com/WmykdDd.jpg", "intelligent man")
-        await message.channel.send(embed=embed)
+        if compare("abhi") or compare("abhinav"):
+            embed = embedImage("https://i.imgur.com/tmrfmuC.jpg", "giraffe")
+            await message.channel.send(embed=embed)
 
-    if compare("dj") or compare("dong jong"):
-        embed = embedImage("https://i.imgur.com/L3uXwVI.jpg", "tall man")
-        await message.channel.send(embed=embed)
+        if compare("adam"):
+            embed = embedImage("https://i.imgur.com/C2PDNDO.png", "FZ")
+            await message.channel.send(embed=embed)
 
-    if compare("yeah yeah"):
-        embed = embedImage("https://i.imgur.com/Uovs7CM.png", "yeah yeah")
-        await message.channel.send(embed=embed)
-        await message.channel.send("singing challenge", tts=True)
+        if compare("mihir"):
+            embed = embedImage("https://i.imgur.com/WmykdDd.jpg", "intelligent man")
+            await message.channel.send(embed=embed)
 
-    if compare("no no"):
-        embed = embedImage("https://i.imgur.com/J1mdv2G.png", "no no")
-        await message.channel.send(embed=embed)
-        await message.channel.send("jisl is a weenie", tts=True)
+        if compare("dj") or compare("dong jong"):
+            embed = embedImage("https://i.imgur.com/L3uXwVI.jpg", "tall man")
+            await message.channel.send(embed=embed)
 
-    if compare("among us"):
-        embed = embedImage("https://i.imgur.com/dFz2mbY.png", "inside us hehe")
-        await message.channel.send(embed=embed)
+        if compare("yeah yeah"):
+            embed = embedImage("https://i.imgur.com/Uovs7CM.png", "yeah yeah")
+            await message.channel.send(embed=embed)
+            await message.channel.send("singing challenge", tts=True)
+
+        if compare("no no"):
+            embed = embedImage("https://i.imgur.com/J1mdv2G.png", "no no")
+            await message.channel.send(embed=embed)
+            await message.channel.send("jisl is a weenie", tts=True)
+
+        if compare("among us"):
+            embed = embedImage("https://i.imgur.com/dFz2mbY.png", "inside us hehe")
+            await message.channel.send(embed=embed)
 
 
     if compare("plane gif"):
