@@ -80,6 +80,11 @@ async def on_message(message):
     if compare("jaishil is gay"):
         await message.channel.send("very gay indeed", tts=True)
 
+    if checkCommand("-s"):
+        status = "Pictures On: " + str(wantPics)
+        await message.channel.send(status)
+        await message.channel.send("Jisl: Is still gay")
+
     elif compare("my balls itch") or compare("mbi"):
         await message.channel.send("same bro")
 
