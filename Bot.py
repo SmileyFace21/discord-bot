@@ -210,7 +210,7 @@ async def on_message(message):
     if checkCommand("-d"):
         user = message.mentions[0]
         await user.edit(voice_channel=None)
-        await message.channel.send(user.name + " has been disconnected")
+        await message.channel.send(user.display_name + " has been disconnected by " + message.author.display_name)
 
 
 #@client.event
