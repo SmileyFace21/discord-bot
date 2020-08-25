@@ -207,6 +207,12 @@ async def on_message(message):
         if message.mentions != []:
             user = message.mentions[0]
 
+    if checkCommand("-d"):
+        user = message.mentions[0]
+        await user.edit(voice_channel=None)
+        await message.channel.send(user.name + " has been disconnected")
+
+
 #@client.event
 #async def on_voice_state_update(member, before, after):
  #   if before.channel != after.channel:
