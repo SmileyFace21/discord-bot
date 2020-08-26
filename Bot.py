@@ -119,7 +119,7 @@ async def on_message(message):
         await user.edit(nick=newName)
 
     if checkCommand("-h"):
-        await message.channel.send("-h: help\n-d: disconnects the mentioned person\n-n: (nickname) changes your nickname or the nickname of the person you mentioned\n-s: tells you status\nclear: (number < 50): clears the number of messages you specified\nplcear: (number < 50): deletes all messages")
+        await message.channel.send("-h: help\n-d: disconnects the mentioned person\n-n: (nickname) changes your nickname or the nickname of the person you mentioned\n-s: tells you status\nclear: (number < 50): deletes the number of messages you specified but excludes pinned messages\nplcear: (number < 50): deletes the number of messages you specified including pinned messages")
 
     if checkCommand("clear"):
         num = int(getCommand(False))
