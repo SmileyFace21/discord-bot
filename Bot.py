@@ -121,7 +121,10 @@ async def on_message(message):
 
     if checkCommand("clear"):
         num = int(getCommand(False))
-        deleted = await message.channel.purge(limit=num + 1)
+        if num <= 50:
+            deleted = await message.channel.purge(limit=num + 1)
+        else:
+             await message.channel.send("bruh stop putting big numbers or you're gay")
 
     if checkCommand("-o") and getCommand(False) == "":
         if wantPics:
