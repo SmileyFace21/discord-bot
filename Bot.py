@@ -128,6 +128,8 @@ async def on_message(message):
             for i in range(0, num + 1):
                 if messages[i].pinned == False:
                     await messages[i].delete()
+        else:
+            await message.channel.send("bruh stop putting big numbers or you're gay")
 
         if checkCommand("pclear"):
             num = int(getCommand(False))
@@ -136,8 +138,8 @@ async def on_message(message):
                 for i in range(0, num + 1):
                     await messages[i].delete()
 
-        else:
-             await message.channel.send("bruh stop putting big numbers or you're gay")
+            else:
+                await message.channel.send("bruh stop putting big numbers or you're gay")
 
     if checkCommand("-o") and getCommand(False) == "":
         if wantPics:
