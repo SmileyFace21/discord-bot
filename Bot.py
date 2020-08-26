@@ -127,7 +127,13 @@ async def on_message(message):
         if num <= 50:
             for i in range(0, num + 1):
                 if messages[i].pinned == False:
-                    print (messages[i].content)
+                    await messages[i].delete()
+
+        if checkCommand("pclear"):
+            num = int(getCommand(False))
+            messages = await message.channel.history(limit=num + 1).flatten()
+            if num <= 50:
+                for i in range(0, num + 1):
                     await messages[i].delete()
 
         else:
