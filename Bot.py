@@ -123,8 +123,13 @@ async def on_message(message):
 
     if checkCommand("clear"):
         num = int(getCommand(False))
+        messages = await message.channel.history(limit=num + 1).flatten()
         if num <= 50:
-            deleted = await message.channel.purge(limit=num + 1)
+            for i in range(0, num + 1):
+                if messages[i].pinned == False:
+                    print (messages[i].content)
+                    await messages[i].delete()
+
         else:
              await message.channel.send("bruh stop putting big numbers or you're gay")
 
