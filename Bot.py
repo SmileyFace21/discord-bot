@@ -118,6 +118,8 @@ async def on_message(message):
 
         await user.edit(nick=newName)
 
+    if checkCommand("-h"):
+        await message.channel.send("-h: help\n-d disconnects the mentioned person\n-n (nickname) changes your nickname or the nickname of the person you mentioned\n-s: tells you status")
 
     if checkCommand("clear"):
         num = int(getCommand(False))
