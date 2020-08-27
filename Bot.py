@@ -1,6 +1,7 @@
 import discord
 import aiohttp
 import random
+import time
 
 tokenFile = open("token.txt", "r")
 tokenList = tokenFile.readlines()
@@ -131,15 +132,15 @@ async def on_message(message):
         else:
             await message.channel.send("bruh stop putting big numbers or you're gay")
 
-        if checkCommand("pclear"):
-            num = int(getCommand(False))
-            messages = await message.channel.history(limit=num + 1).flatten()
-            if num <= 50:
-                for i in range(0, num + 1):
-                    await messages[i].delete()
+    if checkCommand("pclear"):
+        num = int(getCommand(False))
+        messages = await message.channel.history(limit=num + 1).flatten()
+        if num <= 50:
+            for i in range(0, num + 1):
+                await messages[i].delete()
 
-            else:
-                await message.channel.send("bruh stop putting big numbers or you're gay")
+        else:
+            await message.channel.send("bruh stop putting big numbers or you're gay")
 
     if checkCommand("-o") and getCommand(False) == "":
         if wantPics:
@@ -230,6 +231,13 @@ async def on_message(message):
         await user.edit(voice_channel=None)
         await message.channel.send(user.display_name + " has been disconnected by " + message.author.display_name)
 
+    if checkCommand("play"):
+        vc = message.author.voice
+        client.join_voice_channel(vc)
+        player = vc.create_ffmpeg_player('Recording(2).mp3', after=lambda: print('done'))
+        player.start()
+        while not player.is_done():
+            await time.sleep(1)
 
 #@client.event
 #async def on_voice_state_update(member, before, after):
