@@ -129,6 +129,8 @@ async def on_message(message):
             for i in range(0, num + 1):
                 if messages[i].pinned == False:
                     await messages[i].delete()
+                else:
+                    i -= 1
         else:
             await message.channel.send("bruh stop putting big numbers or you're gay")
 
