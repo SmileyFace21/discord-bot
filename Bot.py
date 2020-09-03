@@ -120,7 +120,7 @@ async def on_message(message):
         await user.edit(nick=newName)
 
     if checkCommand("-h"):
-        await message.channel.send("-h: help\n-d: disconnects the mentioned person\n-n: (nickname) changes your nickname or the nickname of the person you mentioned\n-s: tells you status\nclear: (number < 50): deletes the number of messages you specified but excludes pinned messages\nplcear: (number < 50): deletes the number of messages you specified including pinned messages")
+        await message.channel.send("-h: help\n-d: disconnects the mentioned person\n-n: (nickname) changes your nickname or the nickname of the person you mentioned\n-s: tells you status\nclear: (number < 50): deletes the number of messages you specified but excludes pinned messages\npclear: (number < 50): deletes the number of messages you specified including pinned messages")
 
     if checkCommand("clear"):
         num = int(getCommand(False))
@@ -140,6 +140,8 @@ async def on_message(message):
         if num <= 50:
             for i in range(0, num + 1):
                 await messages[i].delete()
+
+
 
         else:
             await message.channel.send("bruh stop putting big numbers or you're gay")
@@ -213,6 +215,16 @@ async def on_message(message):
         if compare ("kanye") or compare("kanye west"):
             embed = embedImage("https://i.imgur.com/Qpgsg5G.png", "jesus or kanye????")
             await message.channel.send(embed=embed)
+
+        if compare("pain"):
+            embed = embedImage("https://i.imgur.com/npbWOQI.jpg", "pain")
+            await message.channel.send(embed=embed)
+
+        if compare("frick 12"):
+            embed = embedImage("https://i.imgur.com/7O3fsZx.png", "frick 12")
+            await message.channel.send(embed=embed)
+
+
 
 
     if compare("plane gif"):
