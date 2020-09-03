@@ -224,6 +224,10 @@ async def on_message(message):
             embed = embedImage("https://i.imgur.com/7O3fsZx.png", "frick 12")
             await message.channel.send(embed=embed)
 
+        if compare("female") or compare("feminism"):
+            embed = embedImage("https://i.imgur.com/OffhrKL.png", "females am i right")
+            await message.channel.send(embed=embed)
+
 
 
 
