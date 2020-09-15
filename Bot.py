@@ -123,28 +123,35 @@ async def on_message(message):
         await message.channel.send("-h: help\n-d: disconnects the mentioned person\n-n: (nickname) changes your nickname or the nickname of the person you mentioned\n-s: tells you status\nclear: (number < 50): deletes the number of messages you specified but excludes pinned messages\npclear: (number < 50): deletes the number of messages you specified including pinned messages")
 
     if checkCommand("clear"):
-        num = int(getCommand(False))
-        messages = await message.channel.history(limit=num + 1).flatten()
-        if num <= 50:
-            for i in range(0, num + 1):
-                if messages[i].pinned == False:
-                    await messages[i].delete()
-                else:
-                    i -= 1
+        if message.author.name == "shrek":
+            await message.channel.send("silly silly")
         else:
-            await message.channel.send("bruh stop putting big numbers or you're gay")
+
+            num = int(getCommand(False))
+            messages = await message.channel.history(limit=num + 1).flatten()
+            if num <= 50:
+                for i in range(0, num + 1):
+                    if messages[i].pinned == False:
+                        await messages[i].delete()
+                    else:
+                        i -= 1
+            else:
+                await message.channel.send("bruh stop putting big numbers or you're gay")
 
     if checkCommand("pclear"):
-        num = int(getCommand(False))
-        messages = await message.channel.history(limit=num + 1).flatten()
-        if num <= 50:
-            for i in range(0, num + 1):
-                await messages[i].delete()
-
-
-
+        if (message.author.name == "SmileyFace21"):
+            await message.channel.send("silly silly")
         else:
-            await message.channel.send("bruh stop putting big numbers or you're gay")
+            num = int(getCommand(False))
+            messages = await message.channel.history(limit=num + 1).flatten()
+            if num <= 50:
+                for i in range(0, num + 1):
+                    await messages[i].delete()
+
+
+
+            else:
+                await message.channel.send("bruh stop putting big numbers or you're gay")
 
     if checkCommand("-o") and getCommand(False) == "":
         if wantPics:
