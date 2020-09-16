@@ -124,7 +124,7 @@ async def on_message(message):
 
     if checkCommand("clear"):
         if message.author.name == "shrek":
-            await message.channel.send("silly silly")
+            await message.channel.send("silly child, priveleges are for the men")
         else:
 
             num = int(getCommand(False))
@@ -140,7 +140,7 @@ async def on_message(message):
 
     if checkCommand("pclear"):
         if (message.author.name == "SmileyFace21"):
-            await message.channel.send("silly silly")
+            await message.channel.send("silly child, priveleges are for the men")
         else:
             num = int(getCommand(False))
             messages = await message.channel.history(limit=num + 1).flatten()
