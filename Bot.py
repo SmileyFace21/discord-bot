@@ -106,6 +106,7 @@ async def on_message(message):
     elif compare("dylan is plane"):
         await message.channel.send("plane sex")
 
+
     if checkCommand("-n"):
         if message.mentions != []:
             words = getCommand(True)
@@ -233,6 +234,14 @@ async def on_message(message):
 
         if compare("female") or compare("feminism"):
             embed = embedImage("https://i.imgur.com/OffhrKL.png", "females am i right")
+            await message.channel.send(embed=embed)
+
+        if compare("devlin"):
+            embed = embedImage("", "hot asian man")
+            await message.channel.send(embed=embed)
+
+        if compare("spatula"):
+            embed = embedImage("https://i.imgur.com/SoHlbwn.jpg", "spatula")
             await message.channel.send(embed=embed)
 
 
