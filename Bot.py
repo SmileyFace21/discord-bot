@@ -191,7 +191,7 @@ async def on_message(message):
             await message.channel.send(embed=embed)
 
         if compare("abhi") or compare("abhinav"):
-            embed = embedImage("https://i.imgur.com/tmrfmuC.jpg", "giraffe")
+            embed = embedImage("https://i.imgur.com/Q3rR7b6.jpg", "giraffe")
             await message.channel.send(embed=embed)
 
         if compare("adam"):
@@ -237,12 +237,18 @@ async def on_message(message):
             await message.channel.send(embed=embed)
 
         if compare("devlin"):
-            embed = embedImage("", "hot asian man")
+            embed = embedImage("https://i.imgur.com/MGEHbxB.jpg", "hot asian man")
             await message.channel.send(embed=embed)
 
         if compare("spatula"):
             embed = embedImage("https://i.imgur.com/SoHlbwn.jpg", "spatula")
             await message.channel.send(embed=embed)
+
+        if compare("tarun"):
+            embed = embedImage("https://i.imgur.com/fTbouWr.jpg", "hot glasses")
+            await message.channel.send(embed=embed)
+
+
 
 
 
