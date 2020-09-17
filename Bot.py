@@ -126,8 +126,6 @@ async def on_message(message):
     if checkCommand("clear"):
         if message.author.name == "shrek":
             await message.channel.send("silly child, priveleges are for the men")
-        elif message.author.name == "Abhinav":
-            await message.channel.send("it is in my professional opinion that you are in fact homosexual and therefore i cannot perform this action")
         elif message.author.name == "J.Shah10":
             await message.channel.send("well how about no silly")
         elif message.author.name == "alexn8":
