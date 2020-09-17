@@ -143,13 +143,16 @@ async def on_message(message):
         if canChangeClear.count(message.author.name) > 0:
             exists = False
             command = getCommand(True)
+            sendback = ""
+            for i in range(1, len(command)):
+                sendback += command[i] + " "
             name = command[0]
             people = message.guild.members
             for person in people:
                 if person.name == name:
                     exists = True
             if exists:
-                cannotClear.update({name : command[1]})
+                cannotClear.update({name : sendback})
                 file = open("cannotclear.txt", "w")
                 file.write(getStringDict(cannotClear))
                 await message.channel.send("clearing capabilites are updated for " + name)
@@ -184,6 +187,7 @@ async def on_message(message):
         await message.channel.send("-h: help\n-d: disconnects the mentioned person\n-n: (nickname) changes your nickname or the nickname of the person you mentioned\n-s: tells you status\nclear: (number < 50): deletes the number of messages you specified but excludes pinned messages\npclear: (number < 50): deletes the number of messages you specified including pinned messages")
 
     if checkCommand("clear"):
+        print(cannotClear)
         noClear = cannotClear.keys()
         canClear = True
         for key in noClear:
