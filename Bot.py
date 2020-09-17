@@ -1,3 +1,5 @@
+
+
 import discord
 import aiohttp
 import random
@@ -13,6 +15,15 @@ client = discord.Client()
 lastNum = 0
 wantPics = True
 
+cannotClearFile = open("cannotclear.txt", "r")
+lines = cannotClearFile.read().split("|")
+cannotClear = {}
+for i in range(0, len(lines) - 1, 2):
+    cannotClear.update({lines[i] : lines[i + 1]})
+
+
+print(cannotClear)
+canChangeClear = ["SmileyFace21"]
 
 planeGifUrls = ["https://media1.tenor.com/images/aca8586d66dea2e08350081215a500dd/tenor.gif?itemid=8158374",
                 "https://media1.tenor.com/images/83715a6e56f08f82199fd039f7084131/tenor.gif?itemid=14560718",
@@ -78,6 +89,13 @@ async def on_message(message):
 
         return embed
 
+    def getStringDict(dict):
+        list = dict.items()
+        string = ""
+        for entry in list:
+            string += entry[0] + "|" + entry[1] + "|"
+        return string
+
     if compare("jaishil is gay"):
         await message.channel.send("very gay indeed", tts=True)
 
@@ -120,17 +138,60 @@ async def on_message(message):
 
         await user.edit(nick=newName)
 
+    if checkCommand("-noclear"):
+        getStringDict(cannotClear)
+        if canChangeClear.count(message.author.name) > 0:
+            exists = False
+            command = getCommand(True)
+            name = command[0]
+            people = message.guild.members
+            for person in people:
+                if person.name == name:
+                    exists = True
+            if exists:
+                cannotClear.update({name : command[1]})
+                file = open("cannotclear.txt", "w")
+                file.write(getStringDict(cannotClear))
+                await message.channel.send("clearing capabilites are updated for " + name)
+
+            else:
+                await message.channel.send("this user does not exist, please enter their username, not their display name")
+        else:
+            await message.channel.send("you do not have permission do make this change")
+
+    if checkCommand("-canclear"):
+        if canChangeClear.count(message.author.name) > 0:
+            exists = False
+            name = getCommand(True)[0]
+            people = message.guild.members
+            for person in people:
+                if person.name == name:
+                    exists = True
+                    cannotClear.pop(name)
+                    file = open("cannotclear.txt", "w")
+                    file.write(getStringDict(cannotClear))
+                    await message.channel.send("this change has been successfully made")
+
+            if exists == False:
+                await message.channel.send("this user does not exist, make sure you are typing their username, not their display name")
+        else:
+            await message.channel.send("you do not have permission to make this change")
+
+
+
+
     if checkCommand("-h"):
         await message.channel.send("-h: help\n-d: disconnects the mentioned person\n-n: (nickname) changes your nickname or the nickname of the person you mentioned\n-s: tells you status\nclear: (number < 50): deletes the number of messages you specified but excludes pinned messages\npclear: (number < 50): deletes the number of messages you specified including pinned messages")
 
     if checkCommand("clear"):
-        if message.author.name == "shrek":
-            await message.channel.send("silly child, priveleges are for the men")
-        elif message.author.name == "J.Shah10":
-            await message.channel.send("well how about no silly")
-        elif message.author.name == "alexn8":
-            await message.channel.send("stop trying to clear it, it'll never go away...")
-        else:
+        noClear = cannotClear.keys()
+        canClear = True
+        for key in noClear:
+            if key == message.author.name:
+                canClear = False
+                await message.channel.send(cannotClear.get(key))
+
+        if canClear:
 
             num = int(getCommand(False))
             messages = await message.channel.history(limit=num + 1).flatten()
@@ -143,20 +204,6 @@ async def on_message(message):
             else:
                 await message.channel.send("bruh stop putting big numbers or you're gay")
 
-    if checkCommand("pclear"):
-        if (message.author.name == "SmileyFace21"):
-            await message.channel.send("silly child, priveleges are for the men")
-        else:
-            num = int(getCommand(False))
-            messages = await message.channel.history(limit=num + 1).flatten()
-            if num <= 50:
-                for i in range(0, num + 1):
-                    await messages[i].delete()
-
-
-
-            else:
-                await message.channel.send("bruh stop putting big numbers or you're gay")
 
     if checkCommand("-o") and getCommand(False) == "":
         if wantPics:
