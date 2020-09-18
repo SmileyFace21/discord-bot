@@ -96,6 +96,15 @@ async def on_message(message):
             string += entry[0] + "|" + entry[1] + "|"
         return string
 
+    def checkExist(name, guild):
+        exists = False
+        people = guild.members
+        for person in people:
+            if person.name == name:
+                exists = True
+
+        return exists
+
     if compare("jaishil is gay"):
         await message.channel.send("very gay indeed", tts=True)
 
@@ -141,16 +150,12 @@ async def on_message(message):
     if checkCommand("-noclear"):
         getStringDict(cannotClear)
         if canChangeClear.count(message.author.name) > 0:
-            exists = False
             command = getCommand(True)
             sendback = ""
             for i in range(1, len(command)):
                 sendback += command[i] + " "
             name = command[0]
-            people = message.guild.members
-            for person in people:
-                if person.name == name:
-                    exists = True
+            exists = checkExist(name, message.guild)
             if exists:
                 cannotClear.update({name : sendback})
                 file = open("cannotclear.txt", "w")
@@ -164,11 +169,9 @@ async def on_message(message):
 
     if checkCommand("-canclear"):
         if canChangeClear.count(message.author.name) > 0:
-            exists = False
             name = getCommand(True)[0]
-            people = message.guild.members
-            for person in people:
-                if person.name == name:
+            exists = checkExist(name, message.guild)
+            if exists:
                     exists = True
                     cannotClear.pop(name)
                     file = open("cannotclear.txt", "w")
@@ -179,6 +182,7 @@ async def on_message(message):
                 await message.channel.send("this user does not exist, make sure you are typing their username, not their display name")
         else:
             await message.channel.send("you do not have permission to make this change")
+
 
 
 
@@ -207,6 +211,15 @@ async def on_message(message):
                         i -= 1
             else:
                 await message.channel.send("bruh stop putting big numbers or you're gay")
+
+    if checkCommand("-whoclear"):
+        string = ""
+        people = getStringDict(cannotClear)
+        peopleList = people.split("|")
+        for i in range(0, len(peopleList) - 1, 2):
+            string += peopleList[i] + ": " + peopleList[i+1] + "\n"
+
+        await message.channel.send(string)
 
 
     if checkCommand("-o") and getCommand(False) == "":
