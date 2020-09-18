@@ -213,13 +213,13 @@ async def on_message(message):
                 await message.channel.send("bruh stop putting big numbers or you're gay")
 
     if checkCommand("-whoclear"):
-        string = ""
+        stringg = ""
         people = getStringDict(cannotClear)
         peopleList = people.split("|")
         for i in range(0, len(peopleList) - 1, 2):
-            string += peopleList[i] + ": " + peopleList[i+1] + "\n"
+            stringg += peopleList[i] + ": " + peopleList[i+1] + "\n"
 
-        await message.channel.send(string)
+        await message.channel.send(stringg)
 
 
     if checkCommand("-o") and getCommand(False) == "":
