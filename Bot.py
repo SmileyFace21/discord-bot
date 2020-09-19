@@ -14,6 +14,7 @@ id = 703700230251610172
 client = discord.Client()
 lastNum = 0
 wantPics = True
+nokahil = True
 
 cannotClearFile = open("cannotclear.txt", "r")
 lines = cannotClearFile.read().split("|")
@@ -47,9 +48,10 @@ jaishilPics = ["https://i.imgur.com/hkseTHR.png"
 
 
 
+
 @client.event
 async def on_message(message):
-    global lastNum, id, wantPics
+    global lastNum, id, wantPics, nokahil
     id = client.get_guild(703700230251610172)
 
     def compare(word):
@@ -105,22 +107,35 @@ async def on_message(message):
 
         return exists
 
+    def send(title, text):
+        embed = discord.Embed(title=title, description=text, color=discord.Color.dark_magenta())
+        return embed
+
+    def send(title):
+        embed = discord.Embed(title=title, color=discord.Color.dark_magenta())
+        return embed
+
+    def send(title, text, tn):
+        embed = discord.Embed(title=title, descriptiom=text, color=discord.Color.dark_magenta())
+        embed.set_thumbnail(tn)
+        return embed
+
+
+
+
     if compare("jaishil is gay"):
-        await message.channel.send("very gay indeed", tts=True)
+        await message.channel.send(embed=send("who is gay?", "jaishil shah is"))
 
     if checkCommand("-s"):
         status = "Pictures On: " + str(wantPics)
-        await message.channel.send(status)
-        await message.channel.send("Jisl: Is still gay")
+        await message.channel.send(embed=send(status, "Jisl: Is still gay"))
+
 
     elif compare("my balls itch") or compare("mbi"):
-        await message.channel.send("same bro")
+        await message.channel.send(embed=send("same bro"))
 
     elif compare("i'm gay") or compare("im gay"):
-        await message.channel.send("I agree, " + message.author.display_name + " is gay")
-
-    elif compare("users"):
-        await message.channel.send(f"""Number of Members:  {id.member_count} """)
+        await message.channel.send(embed=send("I agree, " + message.author.display_name + " is gay"))
 
     elif compare("mihir is gay"):
         await message.author.edit(nick="i am big gay")
@@ -131,7 +146,7 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
     elif compare("dylan is plane"):
-        await message.channel.send("plane sex")
+        await message.channel.send(embed=send("plane sex"))
 
 
     if checkCommand("-n"):
@@ -160,12 +175,12 @@ async def on_message(message):
                 cannotClear.update({name : sendback})
                 file = open("cannotclear.txt", "w")
                 file.write(getStringDict(cannotClear))
-                await message.channel.send("clearing capabilites are updated for " + name)
+                await message.channel.send(embed=send("clearing capabilites are updated for " + name))
 
             else:
-                await message.channel.send("this user does not exist, please enter their username, not their display name")
+                await message.channel.send(embed=send("this user does not exist", "please enter their username, not their display name"))
         else:
-            await message.channel.send("you do not have permission do make this change")
+            await message.channel.send("you do not have permission do make this change", "please ask the administrator to make this change", "https://i.pinimg.com/originals/af/2d/fd/af2dfd726ed01af133fcaf3e4707ebdf.png")
 
     if checkCommand("-canclear"):
         if canChangeClear.count(message.author.name) > 0:
@@ -176,12 +191,24 @@ async def on_message(message):
                     cannotClear.pop(name)
                     file = open("cannotclear.txt", "w")
                     file.write(getStringDict(cannotClear))
-                    await message.channel.send("this change has been successfully made")
+                    await message.channel.send(embed=send("this change has been successfully made"))
 
             if exists == False:
-                await message.channel.send("this user does not exist, make sure you are typing their username, not their display name")
+                await message.channel.send(embed=send("this user does not exist", "make sure you are typing their username, not their display name", "https://i.pinimg.com/originals/af/2d/fd/af2dfd726ed01af133fcaf3e4707ebdf.png"))
         else:
-            await message.channel.send("you do not have permission to make this change")
+            await message.channel.send(embed=send("you do not have permission to make this change", "please as an administrator to make this change", "https://i.pinimg.com/originals/af/2d/fd/af2dfd726ed01af133fcaf3e4707ebdf.png"))
+
+
+
+
+    if checkCommand("-nokahil"):
+        if message.author.name != "shrek":
+            if nokahil == True:
+                nokahil = False
+            else:
+                nokahil = True
+
+
 
 
 
@@ -347,10 +374,11 @@ async def on_message(message):
         while not player.is_done():
             await time.sleep(1)
 
-#@client.event
-#async def on_voice_state_update(member, before, after):
- #   if before.channel != after.channel:
-  #      vcList = Guild.voice_channels
+@client.event
+async def on_voice_state_update(member, before, after):
+    if nokahil and member.name == "Abhinav":
+        await member.edit(voice_channel=None)
+
 
 
 
