@@ -139,7 +139,7 @@ async def on_message(message):
         return embed
 
     def getImgurLink(link):
-        PATH = ".\\chromedriver.exe"
+        PATH = "./chromedriver.exe"
         driver = webdriver.Chrome(PATH)
         driver.get(link)
         image = driver.find_element_by_xpath("/html/body/div[8]/div[3]/div[1]/div[1]/div[2]/div[1]/a/img")
@@ -147,16 +147,19 @@ async def on_message(message):
         time.sleep(1)
         image2 = driver.find_element_by_class_name("image-placeholder")
         image2.click()
+        time.sleep(1)
         image3 = driver.find_element_by_xpath("/html/body/div/div/div[2]/div[2]/div/div/div/div/img")
         link = image3.get_attribute("src")
+        driver.quit()
         return link
+
 
     if checkCommand("-search"):
         if len(getCommand(True)) > 1:
             arr = getCommand(True)
             link = "https://imgur.com/search/score?q="
             for word in range(0, len(arr) - 1):
-                link += word + "+"
+                link = link + arr[word] + "+"
             link+= arr[len(arr) - 1]
             await message.channel.send(getImgurLink(link))
         else:
@@ -379,9 +382,6 @@ async def on_message(message):
             embed = embedImage("https://i.imgur.com/MGEHbxB.jpg", "hot asian man")
             await message.channel.send(embed=embed)
 
-        if compare("spatula"):
-            embed = embedImage("https://i.imgur.com/SoHlbwn.jpg", "spatula")
-            await message.channel.send(embed=embed)
 
         if compare("tarun"):
             embed = embedImage("https://i.imgur.com/fTbouWr.jpg", "hot glasses")
