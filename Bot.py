@@ -139,7 +139,7 @@ async def on_message(message):
         return embed
 
     def getImgurLink(link):
-        PATH = "./chromedriver.exe"
+        PATH = "chromedriver.exe"
         driver = webdriver.Chrome(executable_path=PATH)
         driver.get(link)
         image = driver.find_element_by_xpath("/html/body/div[8]/div[3]/div[1]/div[1]/div[2]/div[1]/a/img")
