@@ -1,9 +1,15 @@
 
-
 import discord
 import aiohttp
 import random
 import time
+import json
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 tokenFile = open("token.txt", "r")
 tokenList = tokenFile.readlines()
@@ -22,6 +28,18 @@ cannotClear = {}
 for i in range(0, len(lines) - 1, 2):
     cannotClear.update({lines[i] : lines[i + 1]})
 
+output = []
+test = {"kahil" : "gay", "mihir" : "not gay", "cannotclear" : {"smiley" : "no", "shrek" : "yes", "fatlips" : "pooppoo"}}
+for i in range(3):
+    output.append(test)
+
+jobj = json.dumps(output, indent = 4)
+with open("serverinfo.json", "w") as outfile:
+    outfile.write(jobj)
+
+with open("serverinfo.json", "r") as openfile:
+    obj = json.load(openfile)
+    print(obj)
 
 print(cannotClear)
 canChangeClear = ["SmileyFace21"]
@@ -107,46 +125,68 @@ async def on_message(message):
 
         return exists
 
-    def send(title, text):
+    def sendtt(title, text):
         embed = discord.Embed(title=title, description=text, color=discord.Color.dark_magenta())
         return embed
 
-    def send(title):
+    def sendt(title):
         embed = discord.Embed(title=title, color=discord.Color.dark_magenta())
         return embed
 
-    def send(title, text, tn):
+    def sendttt(title, text, tn):
         embed = discord.Embed(title=title, descriptiom=text, color=discord.Color.dark_magenta())
         embed.set_thumbnail(tn)
         return embed
+
+    def getImgurLink(link):
+        PATH = ".\\chromedriver.exe"
+        driver = webdriver.Chrome(PATH)
+        driver.get(link)
+        image = driver.find_element_by_xpath("/html/body/div[8]/div[3]/div[1]/div[1]/div[2]/div[1]/a/img")
+        image.click()
+        time.sleep(1)
+        image2 = driver.find_element_by_class_name("image-placeholder")
+        image2.click()
+        image3 = driver.find_element_by_xpath("/html/body/div/div/div[2]/div[2]/div/div/div/div/img")
+        link = image3.get_attribute("src")
+        return link
+
+    if checkCommand("-search"):
+        if len(getCommand(True)) > 1:
+            arr = getCommand(True)
+            link = "https://imgur.com/search/score?q="
+            for word in range(0, len(arr) - 1):
+                link += word + "+"
+            link+= arr[len(arr) - 1]
+            await message.channel.send(getImgurLink(link))
+        else:
+            link = "https://imgur.com/search/score?q=" + getCommand(False)
+            await message.channel.send(getImgurLink(link))
+
 
 
 
 
     if compare("jaishil is gay"):
-        await message.channel.send(embed=send("who is gay?", "jaishil shah is"))
+        await message.channel.send(embed=sendtt("who is gay?", "jaishil shah is"))
 
     if checkCommand("-s"):
         status = "Pictures On: " + str(wantPics)
-        await message.channel.send(embed=send(status, "Jisl: Is still gay"))
+        await message.channel.send(embed=sendtt(status, "Jisl: Is still gay"))
 
 
     elif compare("my balls itch") or compare("mbi"):
-        await message.channel.send(embed=send("same bro"))
+        await message.channel.send(embed=sendt("same bro"))
 
     elif compare("i'm gay") or compare("im gay"):
-        await message.channel.send(embed=send("I agree, " + message.author.display_name + " is gay"))
-
-    elif compare("mihir is gay"):
-        await message.author.edit(nick="i am big gay")
-        await message.author.edit(voice_channel=None)
+        await message.channel.send(embed=sendt("I agree, " + message.author.display_name + " is gay"))
 
     elif compare("i love mihir"):
         embed = embedImage("https://cdn.pixabay.com/photo/2016/10/04/16/33/heart-shape-1714807_960_720.jpg", "Why Thank You")
         await message.channel.send(embed=embed)
 
     elif compare("dylan is plane"):
-        await message.channel.send(embed=send("plane sex"))
+        await message.channel.send(embed=sendt("plane sex"))
 
 
     if checkCommand("-n"):
@@ -175,10 +215,11 @@ async def on_message(message):
                 cannotClear.update({name : sendback})
                 file = open("cannotclear.txt", "w")
                 file.write(getStringDict(cannotClear))
-                await message.channel.send(embed=send("clearing capabilites are updated for " + name))
+                await message.channel.send(embed=sendt("clearing capabilites are updated for " + name))
 
             else:
-                await message.channel.send(embed=send("this user does not exist", "please enter their username, not their display name"))
+                await message.channel.send \
+                    (embed=sendtt("this user does not exist", "please enter their username, not their display name"))
         else:
             await message.channel.send("you do not have permission do make this change", "please ask the administrator to make this change", "https://i.pinimg.com/originals/af/2d/fd/af2dfd726ed01af133fcaf3e4707ebdf.png")
 
@@ -191,12 +232,12 @@ async def on_message(message):
                     cannotClear.pop(name)
                     file = open("cannotclear.txt", "w")
                     file.write(getStringDict(cannotClear))
-                    await message.channel.send(embed=send("this change has been successfully made"))
+                    await message.channel.send(embed=sendt("this change has been successfully made"))
 
             if exists == False:
-                await message.channel.send(embed=send("this user does not exist", "make sure you are typing their username, not their display name", "https://i.pinimg.com/originals/af/2d/fd/af2dfd726ed01af133fcaf3e4707ebdf.png"))
+                await message.channel.send(embed=sendttt("this user does not exist", "make sure you are typing their username, not their display name", "https://i.pinimg.com/originals/af/2d/fd/af2dfd726ed01af133fcaf3e4707ebdf.png"))
         else:
-            await message.channel.send(embed=send("you do not have permission to make this change", "please as an administrator to make this change", "https://i.pinimg.com/originals/af/2d/fd/af2dfd726ed01af133fcaf3e4707ebdf.png"))
+            await message.channel.send(embed=sendttt("you do not have permission to make this change", "please as an administrator to make this change", "https://i.pinimg.com/originals/af/2d/fd/af2dfd726ed01af133fcaf3e4707ebdf.png"))
 
 
 
@@ -215,7 +256,8 @@ async def on_message(message):
 
 
     if checkCommand("-h"):
-        await message.channel.send("-h: help\n-d: disconnects the mentioned person\n-n: (nickname) changes your nickname or the nickname of the person you mentioned\n-s: tells you status\nclear: (number < 50): deletes the number of messages you specified but excludes pinned messages\npclear: (number < 50): deletes the number of messages you specified including pinned messages")
+        await message.channel.send \
+            ("-h: help\n-d: disconnects the mentioned person\n-n: (nickname) changes your nickname or the nickname of the person you mentioned\n-s: tells you status\nclear: (number < 50): deletes the number of messages you specified but excludes pinned messages\npclear: (number < 50): deletes the number of messages you specified including pinned messages")
 
     if checkCommand("clear"):
         print(cannotClear)
@@ -244,7 +286,7 @@ async def on_message(message):
         people = getStringDict(cannotClear)
         peopleList = people.split("|")
         for i in range(0, len(peopleList) - 1, 2):
-            stringg += peopleList[i] + ": " + peopleList[i+1] + "\n"
+            stringg += peopleList[i] + ": " + peopleList[ i +1] + "\n"
 
         await message.channel.send(stringg)
 
@@ -277,7 +319,9 @@ async def on_message(message):
             embed = embedImage("https://i.imgur.com/jiTkP0x.jpg", "plane man")
             await message.channel.send(embed=embed)
 
-        if compare("lizzo") or compare("cardi b") or compare("nicki minaj") or compare("megan thee stallion") or compare("travis scott") or compare("lil pump") or compare("lil uzi") or compare("lil xan") or compare("don toliver"):
+        if compare("lizzo") or compare("cardi b") or compare("nicki minaj") or compare \
+                ("megan thee stallion") or compare("travis scott") or compare("lil pump") or compare \
+                ("lil uzi") or compare("lil xan") or compare("don toliver"):
             embed = embedImage("https://images-na.ssl-images-amazon.com/images/I/417CVAiSffL._AC_SY355_.jpg", "i only speak the truth")
             await message.channel.send(embed=embed)
 
@@ -366,18 +410,22 @@ async def on_message(message):
         await user.edit(voice_channel=None)
         await message.channel.send(user.display_name + " has been disconnected by " + message.author.display_name)
 
-    if checkCommand("play"):
-        vc = message.author.voice
-        client.join_voice_channel(vc)
-        player = vc.create_ffmpeg_player('Recording(2).mp3', after=lambda: print('done'))
-        player.start()
-        while not player.is_done():
-            await time.sleep(1)
 
-@client.event
-async def on_voice_state_update(member, before, after):
-    if nokahil and member.name == "Abhinav":
-        await member.edit(voice_channel=None)
+    if compare("mihir is gay"):
+        if message.author.dm_channel == None:
+            await message.author.create_dm()
+            print("yes")
+        await message.author.dm_channel.send \
+            (embed=sendtt("I will literally murder you", "don't ever speak of my dad like that again"))
+        print(message.author.dm_channel)
+
+
+
+
+# @client.event
+# async def on_voice_state_update(member, before, after):
+ #   if nokahil and member.name == "fatlips":
+  #      await member.edit(voice_channel=None)
 
 
 
@@ -393,4 +441,5 @@ async def on_voice_state_update(member, before, after):
         
 
 
-client.run(token)
+client.run(token
+)
