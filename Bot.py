@@ -5,6 +5,8 @@ import random
 import time
 import json
 from selenium import webdriver
+from PIL import Image
+from io import BytesIO
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -138,33 +140,109 @@ async def on_message(message):
         embed.set_thumbnail(tn)
         return embed
 
-    def getImgurLink(link):
-        PATH = "chromedriver.exe"
+
+    def getGiphyLink(link):
+        PATH = "chromedriver/chromedriver.exe"
         driver = webdriver.Chrome(executable_path=PATH)
         driver.get(link)
-        image = driver.find_element_by_xpath("/html/body/div[8]/div[3]/div[1]/div[1]/div[2]/div[1]/a/img")
+        try:
+            time.sleep(2)
+            gif = driver.find_element_by_class_name("giphy-gif-img")
+            link = gif.get_attribute("src")
+            driver.quit()
+            return link
+        except:
+            driver.quit()
+            return "no"
+
+
+
+    def getImgurLink(link):
+        PATH = "chromedriver/chromedriver.exe"
+        driver = webdriver.Chrome(executable_path=PATH)
+        driver.get(link)
+        try:
+
+            image = driver.find_element_by_xpath("/html/body/div[8]/div[3]/div[1]/div[1]/div[2]/div[1]/a/img")
+        except:
+            driver.quit()
+            return "frick"
+        # link = image.get_attribute("src")
         image.click()
-        time.sleep(1)
-        image2 = driver.find_element_by_class_name("image-placeholder")
-        image2.click()
-        time.sleep(1)
-        image3 = driver.find_element_by_xpath("/html/body/div/div/div[2]/div[2]/div/div/div/div/img")
-        link = image3.get_attribute("src")
+        time.sleep(1.5)
+        try:
+            image2 = driver.find_element_by_class_name("image-placeholder")
+            image2.click()
+            image3 = driver.find_element_by_xpath("/html/body/div/div/div[2]/div[2]/div/div/div/div/img")
+            link = image3.get_attribute("src")
+            driver.quit()
+            return link
+        except:
+            print("1st failed")
+
+        try:
+            videoLink = driver.find_element_by_xpath(
+                "/html/body/div/div/div[1]/div/div[3]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[1]/div/div[1]/video/source")
+            link = videoLink.get_attribute("src")
+            driver.quit()
+            return link
+        except:
+            print("2nd failed")
+
+        try:
+            testImage = driver.find_element_by_xpath(
+                "/html/body/div/div/div[1]/div/div[3]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[1]/div").screenshot_as_png
+            im = Image.open(BytesIO(testImage))
+            im.save('test.png')
+            driver.quit()
+            return "";
+        except:
+            print("3rd failed")
+            return "frick"
+
         driver.quit()
         return link
 
 
-    if checkCommand("-search"):
+    if checkCommand("-isearch"):
         if len(getCommand(True)) > 1:
             arr = getCommand(True)
             link = "https://imgur.com/search/score?q="
             for word in range(0, len(arr) - 1):
                 link = link + arr[word] + "+"
             link+= arr[len(arr) - 1]
-            await message.channel.send(getImgurLink(link))
+            link = getImgurLink(link)
         else:
             link = "https://imgur.com/search/score?q=" + getCommand(False)
-            await message.channel.send(getImgurLink(link))
+            link = getImgurLink(link)
+
+        if link == "":
+            await message.channel.send(file=discord.File('test.png'))
+        elif link == "frick":
+            await message.channel.send(embed=sendtt("this image could not be found", "please try entering something else"))
+        else:
+            await message.channel.send(link)
+
+    if checkCommand("-gsearch"):
+        link = "https://giphy.com/search/"
+        if len(getCommand(True)) > 1:
+            arr = getCommand(True)
+            for word in range(0, len(arr) - 1):
+                link = link + arr[word] + "-"
+            link += arr[len(arr) -1]
+            link = getGiphyLink(link)
+            if link is "no":
+                await message.channel.send(
+                    embed=sendtt("this search result could not be found", "please try something else"))
+            else:
+                await message.channel.send(link)
+        else:
+            link = getGiphyLink("https://giphy.com/search/" + getCommand(False))
+            if link is "no":
+                await message.channel.send(
+                    embed=sendtt("this search result could not be found", "please try something else"))
+            else:
+                await message.channel.send(link)
 
 
 
@@ -411,7 +489,7 @@ async def on_message(message):
         await message.channel.send(user.display_name + " has been disconnected by " + message.author.display_name)
 
 
-    if compare("mihir is gay"):
+    if compare("mihir is fat"):
         if message.author.dm_channel == None:
             await message.author.create_dm()
             print("yes")
